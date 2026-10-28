@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DocuMind — an agentic AI assistant for understanding documents">
+  <title>DocuMind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Documents">
+      <a class="brand" href="#" aria-label="DocuMind home">
+        <span class="brand-mark" aria-hidden="true">D</span>
+        <span>DocuMind</span>
+      </a>
+
+      <button class="new-document" id="newDocumentButton" type="button">
+        <span aria-hidden="true">＋</span>
+        New document
+      </button>
+
+      <div class="sidebar-section">
+        <p class="section-label">Recent documents</p>
+        <nav class="document-list" id="documentList" aria-live="polite">
+          <p class="empty-state-small">No documents uploaded yet.</p>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>API ready</span>
+        <button class="icon-button" id="clearHistoryButton" type="button" title="Clear conversation" aria-label="Clear conversation">↻</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="mobileMenuButton" type="button" aria-label="Open menu">☰</button>
+        <div>
+          <p class="eyebrow">Document workspace</p>
+          <h1 id="documentTitle">Ask DocuMind</h1>
+        </div>
+        <div class="privacy-badge" title="Your document stays associated with this session">
+          <span aria-hidden="true">◇</span> Private workspace
+        </div>
+      </header>
+
+      <section class="workspace" id="workspace">
+        <div class="welcome" id="welcomeState">
+          <div class="welcome-icon" aria-hidden="true">
+            <span>⌁</span>
+          </div>
+          <p class="eyebrow">Welcome to DocuMind</p>
+          <h2>Turn documents into answers.</h2>
+          <p class="welcome-copy">Upload a PDF, DOCX, or text file. Then ask a question and receive an answer grounded in the source.</p>
+
+          <button class="upload-area" id="uploadArea" type="button">
+            <span class="upload-icon" aria-hidden="true">↑</span>
+            <span>
+              <strong>Drop a document here</strong>
+              <small>or click to browse · PDF, DOCX, TXT · 10 MB max</small>
+            </span>
+          </button>
+          <input id="fileInput" type="file" accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain" hidden>
+        </div>
+
+        <div class="conversation" id="conversation" aria-live="polite" hidden></div>
+
+        <div class="suggestions" id="suggestions" hidden>
+          <button type="button" data-question="Summarize this document">Summarize document</button>
+          <button type="button" data-question="What are the key points?">List key points</button>
+          <button type="button" data-question="What are the most important conclusions?">Find conclusions</button>
+        </div>
+
+        <form class="composer" id="questionForm">
+          <label class="sr-only" for="questionInput">Ask a question about your document</label>
+          <textarea id="questionInput" rows="1" maxlength="2000" placeholder="Ask a question about your document..." required></textarea>
+          <button class="send-button" id="sendButton" type="submit" aria-label="Ask DocuMind" disabled>
+            <span aria-hidden="true">↑</span>
+          </button>
+        </form>
+        <p class="composer-note">DocuMind can make mistakes. Verify important answers against the source.</p>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>

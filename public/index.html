@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidence Desk</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">ED</span><div><strong>Evidence Desk</strong><small>Document intelligence</small></div></div>
+      <button id="new-chat" class="new-chat" type="button">＋ New analysis</button>
+      <nav class="nav-list" aria-label="Workspace"><button class="nav-item active" type="button"><span>▤</span> Workspace</button></nav>
+      <div class="sidebar-card"><span class="status-dot"></span><strong id="document-status">No document loaded</strong><p>Upload a PDF to begin grounded analysis.</p></div>
+    </aside>
+    <section class="workspace">
+      <header class="topbar">
+        <div><p class="eyebrow">DOCUMENT WORKSPACE</p><h1>Analysis</h1></div>
+        <div class="top-actions"><span id="page-count" class="meta-pill">0 pages</span><label class="upload-button" for="file-input">Upload PDF</label><input id="file-input" type="file" accept="application/pdf" hidden></div>
+      </header>
+      <section class="document-panel">
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon">PDF</div><h2>Add a document to inspect</h2>
+          <p>Evidence Desk searches the source, extracts requirements, and verifies every answer against page-level citations.</p>
+          <label class="primary-button" for="file-input">Choose PDF</label>
+        </div>
+        <div id="document-loaded" class="document-loaded" hidden>
+          <div class="document-preview"><div class="preview-toolbar"><strong id="document-name"></strong><span id="document-size"></span></div><div id="page-preview" class="page-preview"></div></div>
+          <div class="chat-panel">
+            <div id="chat-stream" class="chat-stream"><div class="assistant-message welcome"><p>Document ready. Ask for requirements, summaries, exceptions, obligations, or supporting evidence.</p></div></div>
+            <form id="chat-form" class="composer"><textarea id="question" rows="2" placeholder="Ask about this document…" required></textarea><button id="send-button" type="submit" aria-label="Send question">↑</button></form>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
